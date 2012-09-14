@@ -66,7 +66,7 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
         this.el.addClass('x-form-file-text');
         this.el.dom.removeAttribute('name');
         this.createFileInput();
-
+        
         var btnCfg = Ext.applyIf(this.buttonCfg || {}, {
             text: this.buttonText
         });

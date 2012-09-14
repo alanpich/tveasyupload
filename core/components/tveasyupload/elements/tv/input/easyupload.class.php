@@ -11,7 +11,6 @@ public function process($value,array $params = array()) {
  		
  		$this->modx->regClientStartupScript($js.'ext3/FileUploadField.js');
  		$this->modx->regClientStartupScript($js.'easyupload.button.js');
- 		$this->modx->regClientStartupScript($js.'modx-button-upload/modx.button.upload.js');
  		
  		// Grab mediasource stuff
 		$MS = $this->tv->getSource('web')->toArray();
