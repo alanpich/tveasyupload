@@ -1,7 +1,7 @@
 <?php
 
 
-$_lang['easyupload'] = 'Easy Upload';
+$_lang['easyupload'] = 'Simple File Input';
 
 $_lang['tveasyupload.upload_file'] = 'Upload File';
 
