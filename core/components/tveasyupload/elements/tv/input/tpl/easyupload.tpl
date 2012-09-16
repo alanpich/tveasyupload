@@ -1,4 +1,4 @@
-<input type="text" id="tv{$tv->id}" name="tv{$tv->id}" value="{$tv->value}" />
+<input type="hidden" id="tv{$tv->id}" name="tv{$tv->id}" value="{$tv->value}" />
 <div id="easyupload{$tv->id}"></div>
 <script type="text/javascript">
 {literal}
@@ -7,17 +7,9 @@ myTV = MODx.load({
 	xtype: 'easyupload-button',
 	renderTo: 'easyupload{$tv->id}',
 	tvFieldId: 'tv{$tv->id}',
-	url: '/modx/easyupload/assets/components/tveasyupload/connector.php',
-{literal}	
-	mediasource: {
-{/literal}
-		id: {$MediaSource->id},
-		path: '{$MediaSource->path}',
-		url: '{$MediaSource->url}'
-{literal}	
-	},
-{/literal}
-	path: "{$path}"
+	url: '{$assets}connector.php',
+	res_id: {$res_id},
+	tv_id: {$tv_id}
 {literal}
 });
 

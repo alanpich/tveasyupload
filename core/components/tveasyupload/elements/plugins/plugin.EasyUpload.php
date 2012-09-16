@@ -8,15 +8,7 @@ switch ($modx->event->name) {
     case 'OnTVInputRenderList':
         $modx->event->output($corePath.'elements/tv/input/');
         break;
-    case 'OnTVOutputRenderList':
-        $modx->event->output($corePath.'elements/tv/output/');
-        break;
     case 'OnTVInputPropertiesList':
         $modx->event->output($corePath.'elements/tv/input/options/');
-        break;
-    case 'OnTVOutputRenderPropertiesList':
-        $modx->event->output($corePath.'elements/tv/output/options/');
-        break;
-    case 'OnManagerPageBeforeRender':
         break;
 }

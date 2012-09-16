@@ -6,6 +6,11 @@ EasyUpload.Button = function(config) {
 		cls: 'button',
 		fileUpload: true,
 		labelAlign: 'above',
+		border: false,
+		hideLabels: true,
+		baseParams: {
+			action: 'browser/file/upload'
+		},
 		items: [{
 			xtype: 'fileuploadfield',
 			buttonText: 'Select file...',
@@ -15,11 +20,11 @@ EasyUpload.Button = function(config) {
 		},{
 			xtype: 'hidden',
 			name: 'tv_id',
-			value: '1'
+			value: this.tv_id
 		},{
 			xtype: 'hidden',
 			name: 'res_id',
-			value: '2'
+			value: this.res_id
 		}],
 		listeners: {
 			'afterRender': { fn: function(){
@@ -34,20 +39,26 @@ EasyUpload.Button = function(config) {
 					
 				// Fix dodgy upload button positioning
 				var wrap = Ext.get(this.renderTo).select('div.x-form-element').elements[0];
-					wrap.style.paddingLeft = '0px';
+					wrap.style.paddingLeft = '1px';
 					
 				// Create the preview image img
 				this.previewImage = document.createElement('img');
 				this.previewImage.width = '200';
+				this.previewImage.style.marginTop = '5px';
 				this.previewImage.src = this.tvField.value;
 				document.getElementById(this.renderTo).appendChild(this.previewImage);
 				
+				// Set the tv_id and res_id fields
+				var resid = this.getField('res_id');
+					resid.setValue(this.res_id);
+				var tvid = this.getField('tv_id');
+					tvid.setValue(this.tv_id);
+				
 			},scope: this},
-			'success': {fn:function(){
-				alert('successful upload!');
+			'success': {fn:function(res){
 				
 				// Generate full image url
-				var URL = this.mediasource.url+this.path+this.filename;
+				var URL = res.result.message;
 				
 				// Update TV value field
 				this.tvField.value = URL

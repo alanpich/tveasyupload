@@ -11,30 +11,17 @@ public function process($value,array $params = array()) {
  		
  		$this->modx->regClientStartupScript($js.'ext3/FileUploadField.js');
  		$this->modx->regClientStartupScript($js.'easyupload.button.js');
+ 
+ 		// Set assets path
+ 		$this->setPlaceholder('assets',$this->modx->getOption('assets_url').'components/tveasyupload/');
  		
- 		// Grab mediasource stuff
-		$MS = $this->tv->getSource('web')->toArray();
-		$mediasource = new stdClass;
-		$mediasource->id = $MS['id'];
-		if($MS['id'] != 1){
-			$mediasource->path = is_null($MS['properties']['basePath']['value'])? $this->modx->getOption('base_path') : $MS['properties']['basePath']['value'];
-			$mediasource->url = is_null($MS['properties']['baseUrl']['value'])? $this->modx->getOption('base_url') : $MS['properties']['baseUrl']['value'];
-		} else {
-			$mediasource->path = $this->modx->getOption('base_path');
-			$mediasource->url = $this->modx->getOption('site_url');
-		};
-		$this->setPlaceholder('MediaSource',$mediasource);
- 		
- 		// Grab custom path extension
- 		$path = 'assets/images/';	 # fill this with dynamic goodness
- 		$this->setPlaceholder('path',$path);
- 		
+ 		$this->setPlaceholder('res_id',$this->modx->resource->get('id'));
+		$this->setPlaceholder('tv_id',$this->tv->get('id'));
  		
     }//
     
     
     public function getLexiconTopics(){
-    	
     	return array('tveasyupload:default');
     }
 }
