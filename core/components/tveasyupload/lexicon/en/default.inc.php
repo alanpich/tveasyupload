@@ -11,6 +11,7 @@ $_lang['tveasyupload.save_path'] = 'Save Path';
 $_lang['tveasyupload.save_path_desc'] = 'Save Path relative to MediaSource root';
 $_lang['tveasyupload.file_prefix'] = 'Filename Prefix';
 $_lang['tveasyupload.file_prefix_desc'] = 'Optional filename prefix for uploaded files';
+$_lang['tveasyupload.mime_types'] = 'Accepted MIME types';
 
 
 // TV Render 

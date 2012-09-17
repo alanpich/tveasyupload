@@ -21,7 +21,7 @@ EasyUpload.Button = function(config) {
 			buttonText: 'Select file...',
 			buttonOnly: true,
 			float: 'left',
-			align: 'left',
+			align: 'left'
 		},{
 			xtype: 'hidden',
 			name: 'tv_id',
@@ -33,7 +33,7 @@ EasyUpload.Button = function(config) {
 		}],
 		listeners: {
 			'afterRender': { fn: function(){
-				
+			
 				this.tvField = document.getElementById(this.tvFieldId);
 			
 				// Bind clicks to auto upload file on selection
@@ -73,6 +73,9 @@ EasyUpload.Button = function(config) {
 					
 				// Update the filename (if it exists)
 				this.updateFileNameField();
+				
+				// Set file input MIME types
+				this.items.items[1].fileInput.dom.setAttribute('accept',this.acceptedMIMEtypes);
 							
 			},scope: this},
 			'success': {fn:function(res){

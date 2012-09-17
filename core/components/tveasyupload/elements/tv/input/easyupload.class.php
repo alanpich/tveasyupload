@@ -20,7 +20,13 @@ public function process($value,array $params = array()) {
  		$this->setPlaceholder('res_id',$this->modx->resource->get('id'));
 		$this->setPlaceholder('tv_id',$this->tv->get('id'));
 		$this->setPlaceholder('ms_id',$this->tv->source);
- 		
+		
+		if(isset($params['MIME'])){
+			$MIME = $params['MIME'];
+		} else {
+			$MIME = '';
+		};
+ 		$this->setPlaceholder('MIME_TYPES',json_encode($MIME));
     }//
     
     

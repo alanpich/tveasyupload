@@ -11,7 +11,8 @@ myTV{$tv->id} = MODx.load{literal}({
 	url: '{$assets}connector.php',
 	res_id: {$res_id},
 	tv_id: {$tv_id},
-	ms_id: {$ms_id}
+	ms_id: {$ms_id},
+	acceptedMIMEtypes: {$MIME_TYPES}
 {literal}
 });
 

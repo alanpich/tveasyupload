@@ -63,7 +63,7 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
     // private
     onRender : function(ct, position){
         Ext.ux.form.FileUploadField.superclass.onRender.call(this, ct, position);
-
+        
         this.wrap = this.el.wrap({cls:'x-form-field-wrap x-form-file-wrap'});
         this.el.addClass('x-form-file-text');
         this.el.dom.removeAttribute('name');
@@ -116,6 +116,7 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
             cls: 'x-form-file',
             tag: 'input',
             type: 'file',
+            accept: this.acceptedMIMEtypes,
             size: 1
         });
     },

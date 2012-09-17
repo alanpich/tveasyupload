@@ -86,6 +86,19 @@ MODx.load({
         ,forId: 'inopt_prefix{/literal}{$tv}{literal}'
         ,html: __('tveasyupload.file_prefix_desc')
         ,cls: 'desc-under'
+    },{
+ 		xtype: 'textfield',
+ 		fieldLabel: __('tveasyupload.mime_types'),
+ 		name: 'inopt_MIME',
+ 		id: 'inopt_MIME{/literal}{$tv}{literal}',
+ 		value: params['MIME'] || '',
+ 		anchors: '98%',
+ 		listeners: oc
+ 	},{
+        xtype: MODx.expandHelp ? 'label' : 'hidden'
+        ,forId: 'inopt_MIME{/literal}{$tv}{literal}'
+        ,html: __('tveasyupload.file_MIME_desc')
+        ,cls: 'desc-under'
     }]
  	,renderTo: 'tv-input-properties-form{/literal}{$tv}{literal}'
 });
