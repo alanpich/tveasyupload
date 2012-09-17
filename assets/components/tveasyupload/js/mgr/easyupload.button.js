@@ -6,6 +6,7 @@ EasyUpload.Button = function(config) {
 		cls: 'button',
 		fileUpload: true,
 		labelAlign: 'above',
+		anchors: '98%',
 		border: false,
 		hideLabels: true,
 		baseParams: {
@@ -14,7 +15,7 @@ EasyUpload.Button = function(config) {
 		items: [{
 			xtype: 'displayfield',
 			name: 'filename',
-			value: 'ARSE'
+			value: ''
 		},{
 			xtype: 'fileuploadfield',
 			buttonText: 'Select file...',
@@ -43,15 +44,16 @@ EasyUpload.Button = function(config) {
 					
 				// Fix dodgy upload button positioning
 				var wrap = Ext.get(this.renderTo).select('div.x-form-element').elements[1];
-					wrap.style.paddingLeft = '1px';
+					wrap.style.paddingLeft = '10px';
 					
 				// Create the preview image img
 				this.previewImage = document.createElement('img');
 				this.previewImage.width = '200';
 				this.previewImage.style.marginTop = '5px';
-				this.previewImage.src = this.tvField.value;
-				document.getElementById(this.renderTo).appendChild(this.previewImage);
+			//	this.previewImage.src = this.tvField.value;
+				document.getElementById(this.renderTo+'preview').appendChild(this.previewImage);
 				// Hide img if file or not set
+				this.updatePreview();
 				this.showHidePreview();
 				
 				// Set the tv_id and res_id fields
@@ -59,10 +61,19 @@ EasyUpload.Button = function(config) {
 					resid.setValue(this.res_id);
 				var tvid = this.getField('tv_id');
 					tvid.setValue(this.tv_id);
+
+				// Make 'reset' button visible
+				this.resetter = document.getElementById('modx-tv-reset-'+this.tv_id);
+				this.resetter.tveu = this;
+				this.resetter.addEventListener('click',function(){
+					this.tveu.resetTV();
+				});
+
+				this.showHideResetter();
 					
 				// Update the filename (if it exists)
 				this.updateFileNameField();
-				
+							
 			},scope: this},
 			'success': {fn:function(res){
 				
@@ -102,12 +113,22 @@ onInputFileChange: function(){
 
 
 ,updatePreview: function(URL){
-		this.previewImage.src = URL;
-		this.getField('filename').setValue('HELLLOOOOO');
+		if(URL == null){ URL = this.tvField.value; };
+		URL = URL.replace(MODx.config.base_path,'');
+		var phpThumbUrl = '../connectors/system/phpthumb.php?h=150&w=150&zc=0&src='+URL+'&wctx=web&source='+this.ms_id
+		this.previewImage.src = phpThumbUrl;
+		this.showHideResetter();
+//		this.getField('filename').setValue('HELLLOOOOO');
 	}//
 
-,showHidePreview: function(){
-		var src = this.tvField.value;
+,showHidePreview: function(show){
+		if(show == null){
+			var src = this.tvField.value;
+		} else {
+			if(show == false){
+				src ='';
+			}
+		};
 		if(src == ''){
 			this.previewImage.style.display="none";
 		} else {
@@ -120,15 +141,49 @@ onInputFileChange: function(){
 			} else {
 				this.previewImage.style.display = 'none';
 			};
-		}
+		};
+		this.showHideResetter();
 	}//
 
 
-,updateFileNameField: function(){
+,updateFileNameField: function( forceValue ){
 		var src = this.tvField.value;
+		if(forceValue != null){ src = forceValue; };
 		var filename = src.split('/').pop();
 		this.getField('filename').setValue(filename);
+		
+		
+		// Change 'upload' button text depending on value
+		if(src == ''){
+			this.items.items[1].button.setText('Upload file...')
+			this.showHideResetter(false);
+		} else {
+			this.items.items[1].button.setText('Replace file...');
+			this.showHideResetter(src);
+		};
 	}//
+	
+	
+,showHideResetter: function(show){
+		// Ensure exists
+		if(this.resetter == null){
+			this.resetter = document.getElementById('modx-tv-reset-'+this.tv_id);
+		};
+
+		// Update reset button state
+		if(this.tvField.value == '' || show === false){
+			this.resetter.style.display = 'none';
+		} else {
+			this.resetter.style.display = 'auto';
+			this.resetter.style.opacity = 1;
+		};
+	}//
+	
+,resetTV: function(){
+		this.updateFileNameField('');
+		this.updatePreview('');
+		this.showHidePreview(false);
+	}//	
 
 });
 Ext.reg('easyupload-button',EasyUpload.Button);

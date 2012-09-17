@@ -15,8 +15,11 @@ public function process($value,array $params = array()) {
  		// Set assets path
  		$this->setPlaceholder('assets',$this->modx->getOption('assets_url').'components/tveasyupload/');
  		
+ 		$this->modx->lexicon->load('tveasyupload');
+ 		
  		$this->setPlaceholder('res_id',$this->modx->resource->get('id'));
 		$this->setPlaceholder('tv_id',$this->tv->get('id'));
+		$this->setPlaceholder('ms_id',$this->tv->source);
  		
     }//
     

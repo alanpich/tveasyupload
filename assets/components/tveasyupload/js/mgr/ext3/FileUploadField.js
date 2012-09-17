@@ -35,6 +35,8 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
 
     // private
     readOnly: true,
+    
+    anchors: '98%',
 
     /**
      * @hide
