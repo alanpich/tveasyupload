@@ -7,7 +7,7 @@ set_time_limit(0);
 define('PKG_NAME','EasyUpload');
 define('PKG_NAME_LOWER','tveasyupload');
 define('PKG_VERSION','1.2');
-define('PKG_RELEASE','himm');
+define('PKG_RELEASE','rc1');
  
 /* define build paths */
 $root = dirname(dirname(__FILE__)).'/';

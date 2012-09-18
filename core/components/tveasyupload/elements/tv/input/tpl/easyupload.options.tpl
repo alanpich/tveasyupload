@@ -33,6 +33,11 @@
 	<h4>Setting Save Path using a snippet</h4>
 	<p>You can also specify a snippet that returns a path string for advanced routing by using the @SNIPPET prefix</p>
 	<p>e.g. <code>@SNIPPET myPathingSnippet</code></p>
+	<h4>Input File MIME types</h4>
+	<p>MIME types describe the type of file to be uploaded and relate to the file extension.</p>
+	<p>Multiple upload types can be specified using a comma-separated list.</p>
+	<p>e.g. <code>image/jpeg, image/png, application/pdf</code></p>
+	<p>A (mostly) full list can be found <a href="http://webdesign.about.com/od/multimedia/a/mime-types-by-file-extension.htm" target="_blank">here</a>.</p>
 </div>
 
 
