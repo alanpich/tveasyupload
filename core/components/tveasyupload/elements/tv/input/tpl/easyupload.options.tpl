@@ -102,7 +102,7 @@ MODx.load({
  	},{
         xtype: MODx.expandHelp ? 'label' : 'hidden'
         ,forId: 'inopt_MIME{/literal}{$tv}{literal}'
-        ,html: __('tveasyupload.file_MIME_desc')
+        ,html: __('tveasyupload.mime_types_desc')
         ,cls: 'desc-under'
     }]
  	,renderTo: 'tv-input-properties-form{/literal}{$tv}{literal}'
