@@ -82,7 +82,7 @@ public function process() {
 
 	/* Check for upload errors
          * Remove 'directory already exists' error
-         * @since v1.1
+         * @since v1.2.1
          */
         $errors = array();
         if (empty($success)) {

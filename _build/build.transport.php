@@ -6,7 +6,7 @@ set_time_limit(0);
 /* define package names */
 define('PKG_NAME','EasyUpload');
 define('PKG_NAME_LOWER','tveasyupload');
-define('PKG_VERSION','1.2');
+define('PKG_VERSION','1.2.1');
 define('PKG_RELEASE','rc1');
  
 /* define build paths */

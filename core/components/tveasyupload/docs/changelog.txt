@@ -1,0 +1,7 @@
+--------------------
+Extra: EasyUpload
+--------------------
+
+# Version 1.2.1
+--------------------
+ :: Fixed 'folder already exists' error on file upload
