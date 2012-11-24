@@ -65,30 +65,37 @@ public function process() {
         // Grab the path option & prepare path
         $opts = unserialize($TV->input_properties);
         $pathStr = $opts['path'];
-		$path = $this->preparePath($pathStr);
-		
-		// Ensure save path exists (and create it if not)
-		$this->ensureSavePathExists($path);
-		
-		// Prepare file names (prevent duplicate overwrites)
-		$prefix = $this->getProperty('tv_id').'-'.$this->getProperty('res_id').'.';
-		if(isset($opts['prefix']) && $opts['prefix'] != ''){
-			$prefix = $opts['prefix'].$prefix;
-		};
-		$files = $this->prepareFiles($prefix);
+        $path = $this->preparePath($pathStr);
+
+        // Ensure save path exists (and create it if not)
+        $this->ensureSavePathExists($path);
+
+        // Prepare file names (prevent duplicate overwrites)
+        $prefix = $this->getProperty('tv_id').'-'.$this->getProperty('res_id').'.';
+        if(isset($opts['prefix']) && $opts['prefix'] != ''){
+                $prefix = $opts['prefix'].$prefix;
+        };
+        $files = $this->prepareFiles($prefix);
                 
         // Do the upload
         $success = $this->source->uploadObjectsToContainer($path,$files);
 
-		// Check for upload errors
+	/* Check for upload errors
+         * Remove 'directory already exists' error
+         * @since v1.1
+         */
+        $errors = array();
         if (empty($success)) {
             $msg = '';
             $errors = $this->source->getErrors();
+            if(isset($errors['name'])){ unset($errors['name']); };
+        };
+        if(count($errors)>0){
             foreach ($errors as $k => $msg) {
                 $this->modx->error->addField($k,$msg);
             }
             return $this->failure($msg);
-        }
+        };
         
         // Generate the file's url
         $fName = array_shift($files); $fName = $fName['name'];
