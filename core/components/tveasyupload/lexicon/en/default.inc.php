@@ -1,9 +1,8 @@
 <?php
 
 
-$_lang['easyupload'] = 'Simple File Input';
+$_lang['tveasyupload'] = 'Simple File Input';
 
-$_lang['tveasyupload.upload_file'] = 'Upload File';
 
 
 // TV Input Properties
@@ -22,5 +21,7 @@ $_lang['tveasyupload.replace_file'] = 'Replace File...';
 // Errors
 $_lang['tveasyupload.error_tvid_ns'] = 'SYSTEM ERROR: modTemplateVar ID not provided';
 $_lang['tveasyupload.error_tvid_invalid'] = 'SYSTEM ERROR: invalid modTemplateVar provided';
+
+$_lang['tveasyupload.err_file_ns'] = 'Error: No File was uploaded';
 
 

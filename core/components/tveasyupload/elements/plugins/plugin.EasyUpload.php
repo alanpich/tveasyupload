@@ -11,4 +11,10 @@ switch ($modx->event->name) {
     case 'OnTVInputPropertiesList':
         $modx->event->output($corePath.'elements/tv/input/options/');
         break;
+    case 'OnDocFormPrerender':
+        $js  = $modx->getOption('assets_url').'components/tveasyupload/mgr/js/';
+        $modx->regClientStartupScript($js.'widgets/modx.form.filefield.js');
+        $modx->regClientStartupScript($js.'EasyUpload.js');
+        $modx->regClientStartupScript($js.'EasyUpload.form.EasyUploadField.js');
+        break;
 }

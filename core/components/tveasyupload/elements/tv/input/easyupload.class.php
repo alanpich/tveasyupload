@@ -6,21 +6,33 @@ class EasyUploadInputRender extends modTemplateVarInputRender {
     }
     
 public function process($value,array $params = array()) {
-    	$js = $this->modx->getOption('assets_url').'components/tveasyupload/js/mgr/';
- 		$this->modx->regClientCSS($js.'ext3/css/fileuploadfield.css');
- 		
- 		$this->modx->regClientStartupScript($js.'ext3/FileUploadField.js');
- 		$this->modx->regClientStartupScript($js.'easyupload.button.js');
- 
+    	$js  = $this->modx->getOption('assets_url').'components/tveasyupload/mgr/js/';
+
+
+        $this->modx->regClientStartupScript($js.'widgets/modx.form.filefield.js');
+        $this->modx->regClientStartupScript($js.'EasyUpload.js');
+ 		$this->modx->regClientStartupScript($js.'EasyUpload.form.EasyUploadField.js');
+
+
  		// Set assets path
  		$this->setPlaceholder('assets',$this->modx->getOption('assets_url').'components/tveasyupload/');
  		
  		$this->modx->lexicon->load('tveasyupload');
  		
  		$this->setPlaceholder('res_id',$this->modx->resource->get('id'));
-		$this->setPlaceholder('tv_id',$this->tv->get('id'));
 		$this->setPlaceholder('ms_id',$this->tv->source);
-		
+
+        // Longwinded method to get tv_id to work with MIGX
+        #$this->setPlaceholder('tv_id',$this->tv->get('id'));
+        $rootTv = $this->modx->getObject('modTemplateVar',array(
+                'name' => $this->tv->get('name')
+            ));
+        $this->setPlaceholder('tv_id',$rootTv->get('id'));
+
+        $tv = $this->tv;
+
+
+
 		if(isset($params['MIME'])){
 			$MIME = $params['MIME'];
 		} else {

@@ -1,7 +1,7 @@
 --------------------
 Extra: EasyUpload
 --------------------
-Version: 1.2.1
+Version: 1.2.6
 Created: September 16th, 2012
 Author: Alan Pich <alan.pich@gmail.com>
 License: GNU GPLv2

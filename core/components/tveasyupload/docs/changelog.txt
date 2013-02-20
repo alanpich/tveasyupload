@@ -2,6 +2,11 @@
 Extra: EasyUpload
 --------------------
 
+# Version 1.2.6
+--------------------
+ :: Complete rewrite into pure Ext component
+ :: Now works with MIGX
+
 # Version 1.2.1
 --------------------
  :: Fixed 'folder already exists' error on file upload

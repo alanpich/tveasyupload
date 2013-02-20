@@ -31,10 +31,16 @@ public function getLanguageTopics() {
 // Amend processor to get save path and create it if nesc
 //---------------------------------------------------------------------------
 public function process() {
- 
+
     	// Grab the mediasource
         if (!$this->getSource()) {
             return $this->failure($this->modx->lexicon('permission_denied'));
+        }
+
+        // Check a file has been uploaded
+        if(count($_FILES)<1){
+        //    die(print_r($_REQUEST));
+            return $this->failure($this->modx->lexicon('tveasyupload.err_file_ns'));
         }
         
         // Initialize and check perms for this mediasource
@@ -52,7 +58,7 @@ public function process() {
         // Grab the TV object
 		$TV = $this->modx->getObject('modTemplateVar',$this->getProperty('tv_id'));
 		if(! $TV instanceof modTemplateVar){
-        	return $this->failure($this->modx->lexicon('tveasyupload.error_tvid_invalid'));
+        	return $this->failure($this->modx->lexicon('tveasyupload.error_tvid_invalid')."<br />\n[".$this->getProperty('tv_id')."]");
 		};
 		
         // Initialize and check perms for this mediasource
@@ -70,6 +76,7 @@ public function process() {
         // Ensure save path exists (and create it if not)
         $this->ensureSavePathExists($path);
 
+
         // Prepare file names (prevent duplicate overwrites)
         $prefix = $this->getProperty('tv_id').'-'.$this->getProperty('res_id').'.';
         if(isset($opts['prefix']) && $opts['prefix'] != ''){
@@ -80,7 +87,7 @@ public function process() {
         // Do the upload
         $success = $this->source->uploadObjectsToContainer($path,$files);
 
-	/* Check for upload errors
+	    /* Check for upload errors
          * Remove 'directory already exists' error
          * @since v1.2.1
          */
@@ -103,7 +110,11 @@ public function process() {
        
        	$url = str_replace('//','/',$url);
        
-        return $this->success($url);
+        return $this->success(stripslashes($url));
+            /*stripslashes(json_encode( (object)array(
+                'success' => true,
+                'msg' => $url
+            )));*/
     }//
 
 
