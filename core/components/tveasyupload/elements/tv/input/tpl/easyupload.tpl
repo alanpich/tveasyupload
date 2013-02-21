@@ -12,8 +12,8 @@
         tv_id: {$tv_id},
         ms_id: {$ms_id},
         acceptedMIMEtypes: {$MIME_TYPES},
-        showValue: false,
-        showPreview: true,
+        showValue: {$showValue},
+        showPreview: {$showPreview},
         value: '{$tv->value}'
     {literal}
     });

@@ -104,6 +104,32 @@ MODx.load({
         ,forId: 'inopt_MIME{/literal}{$tv}{literal}'
         ,html: __('tveasyupload.mime_types_desc')
         ,cls: 'desc-under'
+    },{
+ 		xtype: 'modx-combo-boolean',
+ 		fieldLabel: __('tveasyupload.show_value'),
+ 		name: 'inopt_showValue',
+ 		id: 'inopt_showValue{/literal}{$tv}{literal}',
+ 		value: params['showValue'] || 0,
+ 		anchors: '98%',
+ 		listeners: oc
+ 	},{
+        xtype: MODx.expandHelp ? 'label' : 'hidden'
+        ,forId: 'inopt_MIME{/literal}{$tv}{literal}'
+        ,html: __('tveasyupload.show_value_desc')
+        ,cls: 'desc-under'
+    },{
+ 		xtype: 'modx-combo-boolean',
+ 		fieldLabel: __('tveasyupload.show_preview'),
+ 		name: 'inopt_showPreview',
+ 		id: 'inopt_showPreview{/literal}{$tv}{literal}',
+ 		value: params['showPreview'] || 0,
+ 		anchors: '98%',
+ 		listeners: oc
+ 	},{
+        xtype: MODx.expandHelp ? 'label' : 'hidden'
+        ,forId: 'inopt_MIME{/literal}{$tv}{literal}'
+        ,html: __('tveasyupload.show_preview_desc')
+        ,cls: 'desc-under'
     }]
  	,renderTo: 'tv-input-properties-form{/literal}{$tv}{literal}'
 });

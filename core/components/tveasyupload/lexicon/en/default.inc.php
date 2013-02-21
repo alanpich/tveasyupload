@@ -12,7 +12,10 @@ $_lang['tveasyupload.file_prefix'] = 'Filename Prefix';
 $_lang['tveasyupload.file_prefix_desc'] = 'Optional filename prefix for uploaded files';
 $_lang['tveasyupload.mime_types'] = 'Accepted MIME types';
 $_lang['tveasyupload.mime_types_desc'] = 'Optional comma-separated list of accepted MIME types';
-
+$_lang['tveasyupload.show_value'] = 'Show TV Value';
+$_lang['tveasyupload.show_value_desc'] = 'Display the URL to the file on TV';
+$_lang['tveasyupload.show_preview'] = 'Show Preview';
+$_lang['tveasyupload.show_preview_desc'] = 'Display an thumbnail preview of image files';
 
 // TV Render 
 $_lang['tveasyupload.upload_file'] = 'Upload File...';
