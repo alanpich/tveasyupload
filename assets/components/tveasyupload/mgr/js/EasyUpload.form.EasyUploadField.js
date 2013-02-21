@@ -186,7 +186,8 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
         } else {
             console.log('show',url);
             console.log(this.Preview)
-            this.Preview.dom.src = url;
+            var phpThumbUrl = '../connectors/system/phpthumb.php?w=94&zc=0&src='+url+'&wctx=web&source='+this.ms_id
+            this.Preview.dom.src = phpThumbUrl;
             this.Preview.setDisplayed('block');
         }
     }
