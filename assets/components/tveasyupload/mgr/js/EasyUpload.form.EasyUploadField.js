@@ -107,6 +107,7 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
             });
         }
 
+        // Allow user to clear the field with a button
         this.ClearButton = this.Button.el.wrap().createChild({
             tag: 'img'
             ,size: 13
@@ -127,17 +128,30 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
             }
         });
         this.ClearButton.on('click',this.onClearButtonClick,this);
-
-
         this.showHideClearButton(this.value);
 
+
+        // File/Image preview
+        if(this.showPreview){
+            this.Preview = this.el.wrap().createChild({
+                tag: 'img'
+                ,width: 94
+                ,src: this.getValue() || MODx.config.assets_url+'components/tveasyupload/mgr/dud.gif'
+                ,style: {
+                    display: 'block',
+                    'margin-bottom': '.3em'
+                }
+            })
+        };
+        this.showHidePreview(this.value);
     }
 
 
 
     ,updateDisplay: function(url){
         this.setDisplayValue(url);
-        this.showHideClearButton(url)
+        this.showHideClearButton(url);
+        this.showHidePreview(url);
     }
 
 
@@ -162,6 +176,21 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
         }
     }
 
+    /**
+     * Show or Hide the preview image
+     */
+    ,showHidePreview: function(url){
+        if(!this.showPreview){return}
+        if(url.trim().length < 1){
+            this.Preview.setDisplayed('none');
+        } else {
+            console.log('show',url);
+            console.log(this.Preview)
+            this.Preview.dom.src = url;
+            this.Preview.setDisplayed('block');
+        }
+    }
+
 
 
     /**
@@ -182,6 +211,7 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
 
 
     ,onUploadSuccess: function(o){
+        this.value = o.result.message;
         this.setValue(o.result.message)
         this.updateDisplay(o.result.message);
         MODx.fireResourceFormChange()

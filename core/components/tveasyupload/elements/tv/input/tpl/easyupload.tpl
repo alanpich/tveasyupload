@@ -13,6 +13,7 @@
         ms_id: {$ms_id},
         acceptedMIMEtypes: {$MIME_TYPES},
         showValue: false,
+        showPreview: true,
         value: '{$tv->value}'
     {literal}
     });
