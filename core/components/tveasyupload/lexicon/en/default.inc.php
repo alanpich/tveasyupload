@@ -2,6 +2,7 @@
 
 
 $_lang['tveasyupload'] = 'Simple File Input';
+$_lang['easyupload'] = 'Simple File Input';
 
 
 
@@ -20,6 +21,7 @@ $_lang['tveasyupload.show_preview_desc'] = 'Display an thumbnail preview of imag
 // TV Render 
 $_lang['tveasyupload.upload_file'] = 'Upload File...';
 $_lang['tveasyupload.replace_file'] = 'Replace File...';
+$_lang['tveasyupload.clear_file'] = 'Clear Value';
 
 // Errors
 $_lang['tveasyupload.error_tvid_ns'] = 'SYSTEM ERROR: modTemplateVar ID not provided';

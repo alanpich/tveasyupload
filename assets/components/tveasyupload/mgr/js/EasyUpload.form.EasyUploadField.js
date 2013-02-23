@@ -24,7 +24,7 @@ EasyUpload.form.EasyUploadField = function(config) {
     // Create the trigger button
     this.Button = MODx.load({
          xtype: 'button'
-        ,text: 'Select file...'
+        ,text: this.value==''? this.text : this.altText
         ,handler: this.onButtonClick
         ,scope: this
         ,float: 'left'
@@ -113,8 +113,8 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
             ,size: 13
             ,src: MODx.config.manager_url+'templates/default/images/style/delete.png'
             ,height: 12
-            ,alt: 'Clear Value'
-            ,title: 'Clear Value'
+            ,alt: this.clearText
+            ,title: this.clearText
             ,hidden: true
             ,style: {
                 display: 'inline'
@@ -152,6 +152,7 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
         this.setDisplayValue(url);
         this.showHideClearButton(url);
         this.showHidePreview(url);
+        this.setButtonText(url);
     }
 
 
@@ -162,6 +163,14 @@ Ext.extend(EasyUpload.form.EasyUploadField,Ext.form.TextField,{
     ,setDisplayValue: function(text){
         if(!this.showValue){return}
         this.DisplayValue.dom.innerHTML = text
+    }
+
+    ,setButtonText: function(url){
+        if(url==null || url.trim().length < 1){
+            this.Button.setText(this.text)
+        } else {
+            this.Button.setText(this.altText);
+        }
     }
 
     /**
