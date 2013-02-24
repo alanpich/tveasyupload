@@ -2,7 +2,7 @@
 Extra: EasyUpload
 --------------------
 Version: {$version}
-Created: {$date}
+Build:   {$date}
 Commit:  {$commit}
 
 Author: Alan Pich <alan.pich@gmail.com>
@@ -16,7 +16,7 @@ offering single-button file selection & uploading without the use of the MODx fi
 set on the TV itself, so the content-editor doesn't have to worry about where to save to.
 
 ### Installation Instructions
-Install this package through the Package Manager or download from the [MODx Extras Repository](link to come).
+Install this package through the Package Manager or download from the [MODx Extras Repository](http://modx.com/extras/package/simplefileuploadtv).
 Once installed, 'Simple File Upload' will become an option in the TV Input Type selection list.
 
 
@@ -46,7 +46,7 @@ e.g. `@SNIPPET myPathingSnippet`
 MIME types describe the type of file to be uploaded and relate to the file extension.
 Multiple upload types can be specified using a comma-separated list.
 
-e.g. `image/jpeg`, `image/png`, `application/pdf`
+e.g. `image/jpeg, image/png, application/pdf`
 
 A (mostly) full list can be found [here](http://webdesign.about.com/od/multimedia/a/mime-types-by-file-extension.htm).
 
