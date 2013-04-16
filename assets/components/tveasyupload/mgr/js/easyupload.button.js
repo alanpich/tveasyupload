@@ -84,7 +84,7 @@ EasyUpload.Button = function(config) {
 				var URL = res.result.message;
 				
 				// Update TV value field
-				this.tvField.value = URL
+				this.tvField.value = URL.split('/').pop();
 
 				// Update the preview image
 				this.updatePreview(URL);
